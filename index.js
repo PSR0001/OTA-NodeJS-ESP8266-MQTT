@@ -1,8 +1,14 @@
-import express from 'express'
-import {updateESP} from './MQTT/mqtt'
-const app = express()
-const PORT = process.env.PORT ||3000
+//ES6 Syntax
+//import express from 'express'
+//import {updateESP} from './MQTT/mqtt'
+//ES5 Syntax
+const express = require('express')
+const updateESP = require('./middlewares/mqtt')
 
+const app = express()
+const PORT = process.env.PORT ||5000
+
+app.use(express.json())
 app.use(express.static('public'))
 
 app.get('/lol', (req, res) => {
@@ -10,23 +16,11 @@ app.get('/lol', (req, res) => {
 })
 
 //coming post request from client to update the codes
-app.post('/updateesp',(req,res)=>{
-    try{const host ='mqtt://test.mosquitto.org';
-    const message = "/subupdateesp";
-    const updateMessage  = "Update"
-    updateESP(host, message, updateMessage)
+app.post('/updateesp',updateESP,(req,res)=>{
     res.json({
         status:true,
         message:"success"
     })
-}
-catch(err){
-    console.log(err);
-    res.json({
-        status:false,
-        message:"not send"
-    })
-}
 })
 
 
