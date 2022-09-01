@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin🚀</title>
+  
+  <script src="https://cdn.zingchart.com/zingchart.min.js"></script>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Roboto+Mono&family=Roboto:wght@100;300&display=swap');
+
+    /* slide bar */
+    ::-webkit-scrollbar {
+      width: 6px;
+      height: 6px;
+    }
+
+    ::-webkit-scrollbar-track {
+      border-radius: 10px;
+    }
+
+    body::-webkit-scrollbar-track {
+      /* background-color: #6c7ebb; */
+      border-radius: 0px;
+    }
+
+    .dark ::-webkit-scrollbar-track {
+      /* background-color: #31313a; */
+      border-radius: 0 10px 10px 0;
+    }
+
+    ::-webkit-scrollbar-thumb {
+
+
+      border-radius: 20px;
+    }
+
+    :root {
+      --bg-color: white;
+    }
+
+    * {
+      margin: 0px;
+      padding: 0px;
+    }
+
+    body {
+      background: #6f36ff;
+      font-family: 'Roboto Mono', monospace;
+      display: flex;
+      height: 100vh;
+      overflow: hidden;
+    }
+
+    .First {
+      width: 100px;
+      background: var(--bg-color);
+    }
+
+    .border {
+      border: 1px solid white;
+    }
+
+    .logo {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: none;
+      /* color: white; */
+      padding: 5px;
+    }
+
+    .logo h3 {
+      background-color: var(--bg-color);
+    }
+
+    .Second {
+      position: relative;
+
+      flex-direction: column;
+      width: 100%;
+      /* background: red; */
+      height: 100vh;
+
+    }
+
+    .Terminal {
+      background-color: white;
+      overflow: scroll;
+      font-family: 'Courier New', monospace;
+    }
+
+    .grid-container {
+      margin-left: 3px;
+      margin-right: 3px;
+      margin-top: 5px;
+      height: 99%;
+      width: 100%;
+      display: grid;
+      column-gap: 3px;
+      row-gap: 3px;
+      grid-template-columns: repeat(5, 1fr);
+      grid-template-rows: repeat(4, 1fr);
+    }
+
+    .terminal-greeting {
+      background: white;
+      padding-top: 5px;
+      padding-left: 10px;
+      font-family: 'Roboto Mono', monospace;
+      border-radius: 10px;
+      color: #6f36ff;
+    }
+
+    .logs {
+      margin-top: 15px;
+      margin-left: 12px;
+    }
+
+    /* drag logs */
+    .wrapper header.active {
+      cursor: move;
+      user-select: none;
+    }
+
+    .terminal-greeting .wrapper-class {
+      display: flex;
+      justify-content: space-between;
+    }
+
+    /* ----------------------------- */
+    .buttonUpload {
+      background: #6f36ff;
+      width: 110px;
+      height: 40px;
+      color: white;
+      border: 1px solid white;
+      border-radius: 5px;
+      font-size: 16px;
+    }
+
+    .chooseFile {
+      height: 50px;
+      font-size: 16px;
+      
+    }
+.updateESP{
+  text-align: center;
+}
+.updateButton{
+  background: #3259f4;
+      width: 110px;
+      height: 40px;
+      color: white;
+      border: 1px solid white;
+      border-radius: 5px;
+      font-size: 16px;
+}
+.deleteButton{
+  background: #ed7524;
+      width: 110px;
+      height: 40px;
+      color: white;
+      border: 1px solid white;
+      border-radius: 5px;
+      font-size: 16px;
+}
+    /* ---------------------------- */
+    #myChart {
+  height: 100%;
+  width: 100%;
+  min-height: 150px;
+}
+ 
+.zc-ref {
+  display: none;
+}
+/* ----------------------------- */
+    .item {
+      background: white;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .item1 {
+      grid-column-start: 3;
+      grid-column-end: 6;
+      grid-row-start: 1;
+      grid-row-end: 3;
+    }
+
+    .item2 {
+      grid-column-start: 1;
+      grid-column-end: 3;
+      grid-row-start: 3;
+      grid-row-end: 4;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .item3 {
+      grid-column-start: 1;
+      grid-column-end: 3;
+      grid-row-start: 4;
+      grid-row-end: 5;
+    }
+
+    .item4 {
+      grid-column-start: 3;
+      grid-column-end: 6;
+      grid-row-start: 4;
+      grid-row-end: 5;
+    }
+  </style>
+
+</head>
+
+<body>
+
+  <div class="First">
+    <div class="logo">
+      <h3>IoT🧷</h3>
+    </div>
+  </div>
+
+  <div class="Second ">
+    <div class="grid-container">
+      <div class="file-upload item">
+        <div id='myChart'>
+          Speed
+        </div>
+      </div>
+      <div class="item">A</div>
+      <div class="item">B</div>
+
+      <!-- chart  -->
+      <div class="item  item1 ">
+
+      </div>
+      <div class="item item2">
+        <div>
+          Upload bin File
+          <br>
+          <input type="file" id="fileInput" name="file" class="chooseFile " />
+          <button type="button" id="uploadButton" class="buttonUpload">Upload</button>
+        </div>
+      </div>
+      <div class=" item3" style="background:white;">
+        <div id="Terminal" class="Terminal">
+          <header class="terminal-greeting">
+            <div class="wrapper-class">
+              <p>Logs</p>
+            </div>
+            <hr>
+          </header>
+          <div class="logs">
+            hello my name is Partha
+          </div>
+        </div>
+      </div>
+      <div class="item item4"></div>
+      <div class="item">C</div>
+      <div class="item ">
+        <div class="updateESP">
+        Update all the ESP
+        <br>
+        <button type="button" class="updateButton">Update</button>
+      </div>
+    </div>
+      <div class="item">
+
+        <!-- add a modal here -->
+        <div class="updateESP">
+          Delete a bin File
+          <br>
+          <button type="button" class="deleteButton">Delete</button>
+        </div>
+      </div>
+      <div class="item">F</div>
+      <!-- <div class="item"></div> -->
+    </div>
+
+  </div>
+
+
+
+
+
+
+
+
+  <script>
+    //Uploading the file
+    document.getElementById("uploadButton").onclick = () => {
+      //File system code
+      let fileElement = document.getElementById('fileInput')
+      // check if user had selected a file
+      if (fileElement.files.length === 0) { alert('please choose a file'); return }
+      let file = fileElement.files[0]
+      const form = new FormData();
+      form.append('file', file);
+      //put request for file uploading
+      fetch('/upload', {
+        method: 'PUT',
+        body: form
+      })
+        .then((response) => response.json())
+        .then((result) => {
+          alert("File Uploaded Successfully!")
+        })
+        .catch((error) => {
+          alert("File not Uploaded!")
+        });
+    }
+  </script>
+
+<script>
+  window.feed = function(callback) {
+  var tick = {};
+  tick.plot0 = Math.ceil(350 + (Math.random() * 500));
+  callback(JSON.stringify(tick));
+};
+ 
+var myConfig = {
+  type: "gauge",
+  globals: {
+    fontSize: 12
+  },
+  plotarea: {
+    marginTop: 0
+  },
+  plot: {
+    size: '2%',
+    valueBox: {
+      placement: 'center',
+      text: '%v', //default
+      fontSize: 15,
+      rules: [{
+          rule: '%v >= 700',
+          text: '%v<br>EXCELLENT'
+        },
+        {
+          rule: '%v < 700 && %v > 640',
+          text: '%v<br>Good'
+        },
+        {
+          rule: '%v < 640 && %v > 580',
+          text: '%v<br>Fair'
+        },
+        {
+          rule: '%v <  580',
+          text: '%v<br>Bad'
+        }
+      ]
+    }
+  },
+  tooltip: {
+    borderRadius: 0
+  },
+  scaleR: {
+    aperture: 200,
+    minValue: 300,
+    maxValue: 850,
+    step: 50,
+    center: {
+      visible: false,
+      size:5
+    },
+    tick: {
+      visible: true
+    },
+    item: {
+      offsetR: 0,
+      rules: [{
+        rule: '%i == 9',
+        offsetX: 15
+      }]
+    },
+    labels: ['300', '', '', '', '', '', '580', '640', '700', '750', '800', '850'],
+    ring: {
+      size: 5,
+      rules: [{
+          rule: '%v <= 580',
+          backgroundColor: '#E53935'
+        },
+        {
+          rule: '%v > 580 && %v < 640',
+          backgroundColor: '#EF5350'
+        },
+        {
+          rule: '%v >= 640 && %v < 700',
+          backgroundColor: '#FFA726'
+        },
+        {
+          rule: '%v >= 700',
+          backgroundColor: '#29B6F6'
+        }
+      ]
+    }
+  },
+  refresh: {
+    type: "feed",
+    transport: "js",
+    url: "feed()",
+    interval: 3000,
+    resetTimeout: 1000
+  },
+  series: [{
+    values: [755], // starting value
+    backgroundColor: 'black',
+    indicator: [0.25, 3, 2, 2, 0.85],
+    animation: {
+      effect: 2,
+      method: 1,
+      sequence: 5,
+      speed: 3000
+    },
+  }]
+};
+ 
+zingchart.render({
+  id: 'myChart',
+  data: myConfig,
+  height: 250,
+  width: '100%',
+  height:'100%'
+});
+</script>
+</body>
+
+</html>
