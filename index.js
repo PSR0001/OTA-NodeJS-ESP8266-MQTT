@@ -5,13 +5,12 @@ const multer  = require('multer');
 require('dotenv').config()
 const fileSystem = require('./utils/muler')
 
-const app = express()
-// const router = express.Router();
 const PORT = process.env.PORT ||5000
 
 const storage=fileSystem()
 let upload = multer({storage:storage})
 
+const app = express()
 app.use(cors())
 app.use(express.json())
 app.use(express.static('public'))
@@ -40,5 +39,8 @@ app.post('/auth',function(req, res) {
 catch(err){console.log(err); }
 });
 
-
+//The 404 Route (ALWAYS Keep this as the last route)
+app.get('*', function(req, res){
+  res.render('404.ejs');
+});
 

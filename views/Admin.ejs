@@ -1,4 +1,26 @@
-document.getElementById("uploadButton").onclick = () => {
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin</title>
+ 
+  <script src="	https://unpkg.com/axios@0.24.0/dist/axios.min.js"></script>
+
+</head>
+
+<body>
+    <br><br>
+  <input type="file" id="fileInput" name="file" >
+
+  <button id="uploadButton">upload</button>
+  <br><br> 
+
+  <script >
+    document.getElementById("uploadButton").onclick = () => {
     let fileElement = document.getElementById('fileInput')
 
     // check if user had selected a file
@@ -8,13 +30,11 @@ document.getElementById("uploadButton").onclick = () => {
     }
 
     let file = fileElement.files[0]
-    const title = document.getElementById('filename').value
   
     const form = new FormData();
-    form.append('title', title);
     form.append('file', file);
 
-    axios.post("http://localhost:5000/upload", form, {
+    axios.post("/upload", form, {
       onUploadProgress: progressEvent => {
         const percentCompleted = Math.round(
           (progressEvent.loaded * 100) / progressEvent.total
@@ -27,3 +47,7 @@ document.getElementById("uploadButton").onclick = () => {
         console.log(res.data.url)
       })
   }
+  </script>
+</body>
+
+</html>
