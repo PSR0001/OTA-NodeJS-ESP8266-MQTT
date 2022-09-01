@@ -1,12 +1,16 @@
 const express = require('express')
 const cors = require('cors')
 const updateESP = require('./middlewares/mqtt')
-const authenticate = require('./middlewares/authenticate')
+const multer  = require('multer');
 require('dotenv').config()
-
+const fileSystem = require('./utils/muler')
 
 const app = express()
+// const router = express.Router();
 const PORT = process.env.PORT ||5000
+
+const storage=fileSystem()
+let upload = multer({storage:storage})
 
 app.use(cors())
 app.use(express.json())
@@ -19,9 +23,7 @@ app.post('/updateesp',updateESP,(req,res)=>{
   res.json({status:true,message:"success",publish:true})
 })
 
-app.post('/upload',(req,res)=>{
-  
-})
+app.post('/upload', upload.single('file'), function(req, res) { res.sendStatus(200);});
 
 app.listen(PORT, () => {console.log(`Server listening on port ${PORT}`)})
 
@@ -29,7 +31,6 @@ app.post('/auth',function(req, res) {
   try{
     let username = req.body.username; let password = req.body.password;
     if (password === process.env.PASSWORD && username === process.env.USER_NAME) {
-
         res.render('Admin.ejs')
     }
     else {
