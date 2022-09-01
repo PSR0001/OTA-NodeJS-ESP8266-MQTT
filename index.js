@@ -22,7 +22,11 @@ app.post('/updateesp',updateESP,(req,res)=>{
   res.json({status:true,message:"success",publish:true})
 })
 
-app.post('/upload', upload.single('file'), function(req, res) { res.sendStatus(200);});
+app.put('/upload', upload.single('file'), function(req, res) { res.send({status:true});});
+app.post('/lol',  function(req, res) { 
+  console.log(req.body);
+  res.sendStatus(200);
+});
 
 app.listen(PORT, () => {console.log(`Server listening on port ${PORT}`)})
 
