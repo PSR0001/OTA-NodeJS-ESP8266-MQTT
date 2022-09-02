@@ -221,77 +221,89 @@
       grid-row-end: 5;
     }
   </style>
-<style>
-  /* Modal Header */
-.modal-header {
-  padding: 2px 16px;
-  background-color: #3259f4;
-  color: white;
-}
-.modal-header h3{
-  margin: 10px;
-  font-weight: normal;
-}
+  <style>
+    /* Modal Header */
+    .modal-header {
+      padding: 2px 16px;
+      background-color: #3259f4;
+      color: white;
+    }
 
-/* Modal Body */
-.modal-body {
-  padding: 2px 16px;
+    .modal-header h3 {
+      margin: 10px;
+      font-weight: normal;
+    }
 
-}
+    /* Modal Body */
+    .modal-body {
+      padding: 2px 16px;
 
-/* Modal Footer */
-.modal-footer {
-  padding: 2px 16px;
-  background-color: #3259f4;
-  color: white;
-  display: flex;
-  justify-content: space-between;
-}
-/* Modal Content */
-.modal-content {
-  position: absolute;
-  background-color: #fefefe;
-  margin-left: 20%;
-  padding: 0;
-  /* border: 1px solid #888; */
-  width: 500px;
-  /* height: 300px; */
+    }
 
-  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
-  animation: animatetop 0.9s ease-in;
-}
-/* Add Animation */
-@keyframes animatetop {
-  from {top: -300px; opacity: 0}
-  to {top: 0; opacity: 1}
-}
+    /* Modal Footer */
+    .modal-footer {
+      padding: 2px 16px;
+      background-color: #3259f4;
+      color: white;
+      display: flex;
+      justify-content: space-between;
+    }
 
-/* The Close Button */
-.close {
-  color: #aaa;
-  float: right;
-  font-size: 28px;
-  font-weight: bold;
-}
-.close:hover,
-.close:focus {
-  color: black;
-  text-decoration: none;
-  cursor: pointer;
-}
-</style>
+    /* Modal Content */
+    .modal-content {
+      position: absolute;
+      background-color: #fefefe;
+      margin-left: 20%;
+      padding: 0;
+      /* border: 1px solid #888; */
+      width: 500px;
+      /* height: 300px; */
 
-<style>
-  .updateForm{
-    display: flex;
-    flex-direction: column;
-    margin-top: 10px;
-    margin-bottom: 10px;
-  }
-  .updateForm input{
-   font-size: 20px;
-  }
-</style>
+      box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+      animation: animatetop 0.9s ease-in;
+    }
+
+    /* Add Animation */
+    @keyframes animatetop {
+      from {
+        top: -300px;
+        opacity: 0
+      }
+
+      to {
+        top: 0;
+        opacity: 1
+      }
+    }
+
+    /* The Close Button */
+    .close {
+      color: #aaa;
+      float: right;
+      font-size: 28px;
+      font-weight: bold;
+    }
+
+    .close:hover,
+    .close:focus {
+      color: black;
+      text-decoration: none;
+      cursor: pointer;
+    }
+  </style>
+
+  <style>
+    .updateForm {
+      display: flex;
+      flex-direction: column;
+      margin-top: 10px;
+      margin-bottom: 10px;
+    }
+
+    .updateForm input {
+      font-size: 20px;
+    }
+  </style>
 
 
 </head>
@@ -307,31 +319,31 @@
   <div class="Second ">
     <div class="grid-container">
       <div class="item ">
-        <div class="updateESP" >
+        <div class="updateESP">
           Update all the ESP
           <br>
-          <button type="button" class="updateButton" id="updateESP" >Update</button>
+          <button type="button" class="updateButton" id="updateESP">Update</button>
         </div>
         <!-- Modal content -->
-        <div class="modal-content" id="updateModal" >
-          <div class="modal-header" >
+        <div class="modal-content" id="updateModal">
+          <div class="modal-header">
             <span class="close">&times;</span>
             <h3>Update</h3>
           </div>
           <div class="modal-body">
-            
-            <form action="post" accept="/update" class="updateForm">
+            <form action="post" class="updateForm">
               <label for="updatename">User ID </label>
-              <input type="text " id="updatename" name="updatename" >
-              
+              <input type="text " id="updatename" name="updatename" value="" required>
               <label for="updatepassword">Password </label>
-              <input type="password" id="updatepassword" name="updatepassword" >
+              <input type="password" id="updatepassword" name="updatepassword" value="" required>
             </form>
           </div>
-          <div class="modal-footer" >
+          <div class="modal-footer">
             <h3></h3>
-            <button type="button" class="updateButton " style=" margin:5px;background-color: #262781; border-color: #3259f4;">Submit</button>
+            <button type="submit" class="updateButton " onclick="updateESP()"
+              style=" margin:5px;background-color: #262781; border-color: #3259f4;">Submit</button>
           </div>
+
         </div>
       </div>
       <div class="item">
@@ -349,17 +361,18 @@
             <h3>Update</h3>
           </div>
           <div class="modal-body">
-            <form action="post" accept="/delete" class="updateForm">
+            <form class="updateForm">
               <label for="deletename">User ID </label>
-              <input type="text " id="deletename" name="updatename" >
-              
+              <input type="text " id="deletename" value="" required>
+
               <label for="deletepassword">Password </label>
-              <input type="password" id="deletepassword" name="updatepassword" >
+              <input type="password" id="deletepassword" value="" required>
             </form>
           </div>
           <div class="modal-footer" style="background-color: #ed7524;">
             <h3></h3>
-            <button type="button" class="updateButton " style=" margin:5px;background-color: #ce5f14; border-color: #ed7524;">Submit</button>
+            <button type="button" class="updateButton " onclick="deleteBin()"
+              style=" margin:5px;background-color: #ce5f14; border-color: #ed7524;">Submit</button>
           </div>
         </div>
       </div>
@@ -436,52 +449,96 @@
     }
   </script>
 
-<!-- // Get the modal -->
-<script>
- 
-const modal = document.getElementById('updateModal');
-const btn = document.getElementById('updateESP');
-const span = document.getElementsByClassName("close")[0];
-modal.style.display = "none";
+  <!-- // Get the modal -->
+  <script>
 
-btn.onclick = function() {
-  modal.style.display = "block";
-}
-span.onclick = function() {
-  modal.style.display = "none";
-}
-window.onclick = function(event) {
-  if (event.target == modal) {
+    const modal = document.getElementById('updateModal');
+    const btn = document.getElementById('updateESP');
+    const span = document.getElementsByClassName("close")[0];
     modal.style.display = "none";
-  }
-}
-const modal2 = document.getElementById('deleteModal');
-const btn2 = document.getElementById('deleteESP');
-const span2 = document.getElementsByClassName("close")[1];
-modal2.style.display = "none";
 
-btn2.onclick = function() {
-  modal2.style.display = "block";
-}
-span2.onclick = function() {
-  modal2.style.display = "none";
-}
-window.onclick = function(event) {
-  if (event.target == modal) {
+    btn.onclick = function () {
+      modal.style.display = "block";
+    }
+    span.onclick = function () {
+      modal.style.display = "none";
+    }
+    window.onclick = function (event) {
+      if (event.target == modal) {
+        modal.style.display = "none";
+      }
+    }
+    const modal2 = document.getElementById('deleteModal');
+    const btn2 = document.getElementById('deleteESP');
+    const span2 = document.getElementsByClassName("close")[1];
     modal2.style.display = "none";
-  }
-}
-</script>
 
-<script>
+    btn2.onclick = function () {
+      modal2.style.display = "block";
+    }
+    span2.onclick = function () {
+      modal2.style.display = "none";
+    }
+    window.onclick = function (event) {
+      if (event.target == modal) {
+        modal2.style.display = "none";
+      }
+    }
+  </script>
+
+  <script>
 
 // const updateESP=document.getElementById('updateESP').onclick=()=>{
 //   alert("Alert ! Do You Want to Update all the microcontrollers ?")
 //   modalBox()
 // }
-</script>
+  </script>
+
+  <script>
+
+  </script>
 
 
+
+  <script>
+
+    function fetchPost(url, data) {
+      fetch(`${url}`, {
+        method: 'POST', // or 'PUT'
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(data),
+      })
+        .then((response) => response.json())
+        .then((data) => {
+          alert(`Message: ${JSON.stringify(data)}`)
+
+        })
+        .catch((error) => {
+          alert(`Message : ${error}`)
+          console.error('Error:', error);
+        });
+    }
+
+
+    function updateESP() {
+      let updatepassword = document.getElementById('updatepassword').value
+      let updatename = document.getElementById('updatename').value
+      let data = { password: updatepassword, username: updatename }
+      fetchPost('/updateesp', data)
+    }
+
+    function deleteBin() {
+      let deletepassword = document.getElementById('deletepassword').value
+      let deletename = document.getElementById('deletename').value
+
+      let data = { password: deletepassword, username: deletename }
+      fetchPost('/deletebin', data)
+    }
+
+
+  </script>
 
 
 

@@ -3,7 +3,8 @@ const cors = require('cors')
 const updateESP = require('./middlewares/mqtt')
 const multer  = require('multer');
 require('dotenv').config()
-const fileSystem = require('./utils/muler')
+const fileSystem = require('./utils/muler');
+const deleteBin = require('./middlewares/deletebin');
 
 const PORT = process.env.PORT ||5000
 
@@ -24,12 +25,28 @@ app.post('/updateesp',updateESP,(req,res)=>{
 
 app.put('/upload', upload.single('file'), function(req, res) { res.send({status:true});});
 
-app.post('/lol',  function(req, res) { 
-  console.log(req.body);
-  res.send("./Uploads/First.bin");
+app.post('/deletebin',  function(req, res) { 
+  let status = deleteBin(req,res)
+  if(status === true){res.send({status:true,message:"Successfully Deleted."})}
+  else{res.send({status:false,message:"Error occurs."})}
 });
 
 app.listen(PORT, () => {console.log(`Server listening on port ${PORT}`)})
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 app.post('/auth',function(req, res) {
   try{
