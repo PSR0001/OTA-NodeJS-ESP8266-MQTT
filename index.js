@@ -23,9 +23,10 @@ app.post('/updateesp',updateESP,(req,res)=>{
 })
 
 app.put('/upload', upload.single('file'), function(req, res) { res.send({status:true});});
+
 app.post('/lol',  function(req, res) { 
   console.log(req.body);
-  res.sendStatus(200);
+  res.send("./Uploads/First.bin");
 });
 
 app.listen(PORT, () => {console.log(`Server listening on port ${PORT}`)})
