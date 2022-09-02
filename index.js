@@ -2,11 +2,12 @@ const express = require('express')
 const cors = require('cors')
 const updateESP = require('./middlewares/mqtt')
 const multer  = require('multer');
+const path =require('path')
 require('dotenv').config()
 const fileSystem = require('./utils/muler');
 const deleteBin = require('./middlewares/deletebin');
 
-const PORT = process.env.PORT ||5000
+const PORT = process.env.PORT ||80
 
 const storage=fileSystem()
 let upload = multer({storage:storage})
@@ -17,6 +18,7 @@ app.use(express.json())
 app.use(express.static('public'))
 app.use(express.urlencoded({extended:false})) //all the form info available
 app.set('view-engine','ejs')
+app.use('/static', express.static('public'))
 
 //coming post request from client to update the codes
 app.post('/updateesp',updateESP,(req,res)=>{
@@ -35,17 +37,13 @@ app.listen(PORT, () => {console.log(`Server listening on port ${PORT}`)})
 
 
 
+app.get('/blink',(req,res)=>{
+
+  console.log(req.body);
+  res.sendFile(path.join(__dirname, './Uploads', 'Blink.ino.bin'));
 
 
-
-
-
-
-
-
-
-
-
+})
 
 
 app.post('/auth',function(req, res) {
@@ -53,6 +51,9 @@ app.post('/auth',function(req, res) {
     let username = req.body.username; let password = req.body.password;
     if (password === process.env.PASSWORD && username === process.env.USER_NAME) {
         res.render('Admin.ejs')
+        // res.sendFile(path.join(__dirname, './Admin','index.html'));
+        // res.sendFile(path.join(__dirname, './Admin','style.css'));
+        // res.sendFile(path.join(__dirname, './Admin','script.js'));
     }
     else {
       res.render('alert.ejs')
