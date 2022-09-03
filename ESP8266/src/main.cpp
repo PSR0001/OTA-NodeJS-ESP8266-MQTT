@@ -11,7 +11,7 @@
 WiFiClient espClient;
 PubSubClient client(espClient);
 
-#define MSG_BUFFER_SIZE (50)
+#define MSG_BUFFER_SIZE (10)
 
 const char *mqtt_server = "broker.mqtt-dashboard.com";
 unsigned long lastMsg = 0;
@@ -87,10 +87,10 @@ void callback(char *topic, byte *payload, unsigned int length)
     {
         digitalWrite(BUILTIN_LED, LOW); // Turn the LED on (Note that LOW is the voltage level
           while(1){
-            Serial.println(F("Updating..."));
+            //Serial.println(F("Updating..."));
             // call the update function;
             ESPUpdate(); 
-            Serial.println(F("Done..."));
+            //Serial.println(F("Done..."));
         }
     }
     else
