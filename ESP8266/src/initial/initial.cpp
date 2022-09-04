@@ -4,7 +4,7 @@ WiFiManager WiFimanager;
 
 // Function prototype
 void WiFiConnected();
-
+void ESPLoad();
 // callback functions
 void update_started()
 {
@@ -28,7 +28,7 @@ void update_error(int err)
 
 void setup()
 {
-    WiFimanager.resetSettings();
+    //WiFimanager.resetSettings();
 
     // put your setup code here, to run once:
     Serial.begin(115200);
@@ -41,7 +41,29 @@ void loop()
     // put your main code here, to run repeatedly:
     if (WiFi.status() != WL_CONNECTED)
     {
-        WiFiClient client;
+      ESPLoad();
+    }
+}
+
+// WiFi Function
+void WiFiConnected()
+{
+    //WiFi.mode(WIFI_STA);
+    bool res;
+
+    //res = WiFimanager.autoConnect("ESP8266_EX_69", "user"); // password protected ap
+    res = WiFimanager.autoConnect(); // use chip-id
+
+    if (!res)
+    {
+
+        ESP.restart();
+        delay(2000);
+    }
+}
+
+void ESPLoad(){
+     WiFiClient client;
 
         ESPhttpUpdate.setLedPin(LED_BUILTIN, LOW);
 
@@ -69,22 +91,5 @@ void loop()
             Serial.println(F("UPDATE_OK"));
             break;
         }
-    }
 }
 
-// WiFi Function
-void WiFiConnected()
-{
-    //WiFi.mode(WIFI_STA);
-    bool res;
-
-    //res = WiFimanager.autoConnect("ESP8266_EX_69", "user"); // password protected ap
-    res = WiFimanager.autoConnect(); // use chip-id
-
-    if (!res)
-    {
-
-        ESP.restart();
-        delay(2000);
-    }
-}
