@@ -1,5 +1,5 @@
-/node_modules
-/Uploads
+node_modules
+Uploads
 .pio
 /ESP8266/.vscode/**
 /ESP8266/.vscode/.browse.c_cpp.db*
