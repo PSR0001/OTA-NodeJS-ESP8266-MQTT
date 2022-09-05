@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<!-- Coding By CodingNepal - youtube.com/codingnepal -->
+<html lang="en" dir="ltr">
+
+<head>
+  <meta charset="utf-8">
+  <title>QR Code Reader</title>
+  <link rel="stylesheet" href="style.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.8.0/p5.min.js"></script> -->
+  <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.8.0/addons/p5.dom.min.js"></script> -->
+  <script src="https://cdn.jsdelivr.net/npm/p5@1.4.2/lib/p5.js"></script>
+</head>
+
+<body>
+  <div style="text-align: center;">
+    <div class="wrapper">
+      <div class="heading">Scan The QR Code</div>
+      <!-- <div id="video123"></div> -->
+      <video id="video" width="640" height="480" autoplay></video>
+    </div>
+    <div >
+      <br>
+      <button type="submit" id="submit">Scan</button>
+      <button type="submit" id="flip-button">camera</button>
+    </div>
+  </div>
+  <script src="script.js"></script>
+
+</body>
+
+
+
+
+
+<script>
+  // let video
+
+  // function setup() {
+  //   createCanvas(300, 300);
+  //   video = createCapture(VIDEO);
+  //   // video.size(300,300)
+  //   video.hide()
+  //   let lat, lon;
+  //   const button = document.getElementById('submit');
+  //   if ('geolocation' in navigator) {
+  //     // console.log('geolocation available');
+  //     navigator.geolocation.getCurrentPosition(position => {
+  //       lat = position.coords.latitude;
+  //       lon = position.coords.longitude;
+  //     });
+  //   } else {
+  //     console.log('geolocation not available');
+  //   }
+  // }
+
+
+  // function draw() {
+  //   // image(video);
+  //   image(video, 0, 0, width, width * video.height / video.width);
+  //   var can = document.getElementById('defaultCanvas0')
+  //   let video123 = document.getElementById('video123').appendChild(can)
+  // }
+
+
+
+
+  // const barcodeDetector = new BarcodeDetector({ formats: ['qr_code'] });
+ 
+//  // Detect code function 
+//  const detectCode = () => {
+//    // Start detecting codes on to the video element
+//    barcodeDetector.detect(video).then(codes => {
+//      // If no codes exit function
+//      if (codes.length === 0) return;
+  
+//      for (const barcode of codes)  {
+//        // Log the barcode to the console
+//        console.log(barcode);
+//      }
+//    }).catch(err => {
+//      // Log an error if one happens
+//      console.error(err);
+//    })
+//  }
+
+
+// Prefer camera resolution nearest to 1280x720.
+// const constraints = {
+//   audio: true,
+//   video: { width: 1280, height: 720 }
+// };
+let front = false;
+document.getElementById("flip-button").onclick = () => {
+  front = !front;
+};
+
+const constraints = {
+  video: { facingMode: front ? "user" : "environment" }, 
+  audio: true,
+  video: { width: 1280, height: 720 }
+};
+
+// navigator.mediaDevices.getUserMedia(constraints)
+navigator.webkitGetUserMedia(constraints)
+  .then((mediaStream) => {
+    const video = document.querySelector('video');
+    video.srcObject = mediaStream;
+    video.onloadedmetadata = () => {
+      video.play();
+    };
+  })
+  .catch((err) => {
+    // always check for errors at the end.
+    console.error(`${err.name}: ${err.message}`);
+  });
+
+
+
+
+
+</script>
+
+</html>

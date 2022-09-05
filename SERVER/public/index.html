@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="CSS/style.css">
+    <title>Admin</title>
+</head>
+<body>
+    <br><br><br>
+
+    <form class="container" id="form_id" name="myform" action="/auth" method="POST">
+        <div class="imgcontainer">
+          <img src="image/img_avatar2.png" alt="Avatar" class="avatar" >
+        </div>
+      
+        <div class="container2">
+          <label for="username"><b>Username</b></label>
+          <input id="username" type="text" placeholder="Enter Username" name="username" required>
+      
+          <label for="password"><b>Password</b></label>
+          <input id="password" type="password" placeholder="Enter Password" name="password" required>
+
+          <button type="submit" >Login</button>
+        </div>
+      
+        <div class="container2" style="background-color:#f1f1f1">
+          <button type="button" class="cancelbtn">
+         Forgot Password ?</button>
+        </div>
+      </form>
+  
+</body>
+</html>
