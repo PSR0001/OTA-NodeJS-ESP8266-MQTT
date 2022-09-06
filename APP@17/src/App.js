@@ -24,14 +24,12 @@ function App() {
               <User />
             </Route>
             <Route path="/">
-              
               <div className="main-inner">
                 <Home />
               </div>
             </Route>
           </Switch>
         </div>
-
       </Router>
     </>
   );
