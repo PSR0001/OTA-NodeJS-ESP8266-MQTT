@@ -377,7 +377,12 @@
         </div>
       </div>
 
-      <div class="item">A</div>
+      <div class="item">
+        <input type="text" id="message" value="">
+        <button onclick="postSocket()">
+          submit
+        </button>
+      </div>
       <div class="item">B</div>
 
       <!-- chart  -->
@@ -497,6 +502,44 @@
   <script>
 
   </script>
+
+  <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.4.0/socket.io.js"
+    integrity="sha512-nYuHvSAhY5lFZ4ixSViOwsEKFvlxHMU2NHts1ILuJgOS6ptUmAGt/0i5czIgMOahKZ6JN84YFDA+mCdky7dD8A=="
+    crossorigin="anonymous" referrerpolicy="no-referrer"></script> -->
+    <script src="https://cdn.socket.io/4.5.0/socket.io.min.js" integrity="sha384-7EyYLQZgWBi67fBtVxw60/OWl1kjsfrPFcaU0pp0nAh+i8FD068QogUvg85Ewy1k" crossorigin="anonymous"></script>
+
+  <script>
+
+    let meg = document.getElementById('message')
+    const URL = "/";
+    const socket = io(URL);
+    try{
+
+    
+    console.log("connected");
+    socket.on("connection", (data) => {
+      console.log("show message"+socket.id); // x8WIv7-mJelg7on_ALbx
+      // console.log(data);
+    });
+    socket.on("disconnect", () => {
+      console.log('Socket Disconnected ... ');
+    });
+  }
+  catch(err){console.log(err);}
+
+    function postSocket() {
+
+      console.log("post");
+    if (meg.value) {
+      socket.emit('hex', meg.value);
+      meg.value = '';
+    }
+
+    }
+  </script>
+
+
+
 
 
 

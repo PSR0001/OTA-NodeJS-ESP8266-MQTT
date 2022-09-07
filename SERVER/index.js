@@ -94,18 +94,24 @@ let message = {
 try {
 
   io.on("connection", (socket) => {
-    // console.log(`User with id: ${socket.id} connected!`);
+    console.log(`User with id: ${socket.id} connected!`);
 
     socket.on("disconnect", () => {
       console.log(`User with id: ${socket.id} disconnected`);
     });
 
     // io.emit("Chart-Data",message)
-    socket.on("IoT-Data", (data) => {
-      // console.log(data);
-    socket.broadcast.emit("IoT-Data", data);
+  //   socket.on("IoTData", (data) => {
+  //     console.log("iotdata",data);
+  //   socket.emit("IoTData", JSON.stringify(data));
+    
+  // });
+    socket.on("hex", (data) => {
+      console.log("hex",data);
+    socket.broadcast.emit("hex", JSON.stringify(data));
+    
+  });
 
-    });
   });
 
   //admin-ui

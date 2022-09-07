@@ -1,63 +1,39 @@
-import React, { useState, useEffect } from 'react';
-import io from 'socket.io-client';
+import React, { useEffect, useRef, useState } from "react";
+import io from "socket.io-client";
 
-const socket = io("http://localhost:8000");
+function Message() {
+  const [chat, setChat] = useState([]);
 
-const Message = () => {
-
-
-  const [isConnected, setIsConnected] = useState(socket.connected);
-  const [lastPong, setLastPong] = useState();
-  const [smessage, setsmessage] = useState();
+  const socketRef = useRef();
 
   useEffect(() => {
-    socket.on('connect', () => {
-      setIsConnected(true);
-      // console.log("socket connected");
+    socketRef.current = io.connect("http://localhost:8000");
+
+    socketRef.current.on("hex", (message) => {
+      setChat([...chat, message]);
     });
+    return () => socketRef.current.disconnect();
+  }, [chat]);
 
-    socket.on('disconnect', () => {
-      setIsConnected(false);
-      // console.log("not connected");
-    });
-
-    socket.on('IoT-Data', (msg) => {
-      setLastPong(new Date().toLocaleString() + '.');
-      setsmessage(msg);
-    });
-
-console.log("useeffect");
-  }, [0,1]);
-
-  const sendPing = () => {
-    socket.emit('IoT-Data', "Fan on");
-  }
-
-
-  function socketMessage() {
-
-  }
-
-
+  const renderChat = () => {
+    return chat.map((message, index) => (
+      <div key={index}>
+        <h1>.</h1>
+        <div className="message-blue">
+          <span className="message-content">{message}</span>
+          <div className="message-timestamp-left time">
+            {new Date().toLocaleString()}
+          </div>
+        </div>
+      </div>
+    ));
+  };
 
   return (
-    <div className="message-container">
-      <br />
-      {isConnected ?
-      
-      <p className='connectionOnline'></p>:
-      <p className='connectionOffline'></p>
-      }
-        <p>{smessage || ' '}</p>
-      <div>
-        <p></p>
-        <p className='time'> {lastPong || ' '}</p>
-        <button onClick={sendPing}>Send ping</button>
-      </div>
-
-
+    <div className="message-container ">
+      <div>{renderChat()}</div>
     </div>
   );
-};
+}
 
 export default Message;
