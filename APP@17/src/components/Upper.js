@@ -1,25 +1,26 @@
-import React, { useState, useEffect } from 'react'
+// import React, { useState, useEffect } from 'react'
+import React from 'react'
 import { FaCreativeCommonsNd, FaPowerOff, FaRegLightbulb, FaFan } from "react-icons/fa";
 import { HiLightBulb } from "react-icons/hi";
 
 const Upper = () => {
 
   //button initial state
-  const [first, setfirst] = useState()
-  const [second, setsecond] = useState()
-  const [third, setthird] = useState()
-  const [fourth, setfourth] = useState()
+  // const [first, setfirst] = useState()
+  // const [second, setsecond] = useState()
+  // const [third, setthird] = useState()
+  // const [fourth, setfourth] = useState()
 
   //fetch from esp8266 data;
 
-  useEffect(() => {
-    console.log("Ready...");
-  }, [])
+  // useEffect(() => {
+  //   console.log("Ready...");
+  // }, [])
 
-  function AC(){
-      console.log("Clicked")
+  // function AC(){
+  //     console.log("Clicked")
       
-  }
+  // }
 
 
 
@@ -30,8 +31,8 @@ const Upper = () => {
     <div className="First-container1 grid-container ">
 
       {/* ===================ITEM ONE========================== */}
-      <div onClick={AC} className="display-flex space-center prevent-select effect">
-        <div className="item item1">
+      <div className="display-flex space-center prevent-select effect ">
+        <div className="item item1 glass">
           <div className="main-button">
             <div className="power-icon">
               <FaCreativeCommonsNd />
@@ -46,7 +47,7 @@ const Upper = () => {
 
       {/* ===================ITEM TWO========================== */}
       <div className="display-flex space-center prevent-select effect">
-        <div className="item item2">
+        <div className="item item2 glass">
           <div className="main-button">
             <div className="power-icon">
               <FaRegLightbulb />
@@ -61,7 +62,7 @@ const Upper = () => {
 
       {/* ===================ITEM THREE========================== */}
       <div className="display-flex space-center prevent-select effect">
-        <div className="item item2">
+        <div className="item item2 glass">
           <div className="main-button">
             <div className="power-icon">
               <FaFan />
@@ -76,7 +77,7 @@ const Upper = () => {
 
       {/* ===================ITEM FOUR========================== */}
       <div className="display-flex space-center prevent-select effect">
-        <div className="item item2">
+        <div className="item item2 glass">
           <div className="main-button">
             <div className="power-icon">
               <HiLightBulb />

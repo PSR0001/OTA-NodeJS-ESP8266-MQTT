@@ -4,7 +4,7 @@ const User = () => {
     return (
         <div>
             <div class="card">
-                <img src="https://images.unsplash.com/photo-1453728013993-6d66e9c9123a?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8bGVuc3xlbnwwfHwwfHw%3D&w=1000&q=80" alt="John" />
+                <img src="https://images.unsplash.com/photo-1453728013993-6d66e9c9123a?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8bGVuc3xlbnwwfHwwfHw%3D&w=1000&q=80" alt="img" />
                 <h1>Partha Singha Roy</h1>
                 <p class="title">CEO & Founder, iot-app</p>
                 <p>CoolD69</p>

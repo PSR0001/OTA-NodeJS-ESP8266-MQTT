@@ -5,7 +5,7 @@ import {CgProfile} from 'react-icons/cg'
 const Navbar = () => {
   return (
     <div>
-      <nav className="display-flex space-between main-inner border-down">
+      <nav className="display-flex space-between main-inner border-down ">
        <div className="nav-icon background-white"><Link to="/user"><CgProfile /></Link></div>
        <h3><Link to="/">IoT-App</Link></h3>
        <div className="nav-icon"><Link to="/qr"><BiQr/></Link></div>

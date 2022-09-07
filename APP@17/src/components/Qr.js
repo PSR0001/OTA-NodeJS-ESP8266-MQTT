@@ -6,7 +6,7 @@ const Test = () => {
 
   return (
     <>
-      <div className="QR">
+      <div className="QR glass">
         <QrReader
           onResult={(result, error) => {
             if (!!result) {

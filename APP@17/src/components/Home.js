@@ -1,4 +1,5 @@
 import React from "react";
+import Depper from "./Depper";
 import Upper from "./Upper";
 
 const Home = () => {
@@ -7,7 +8,7 @@ const Home = () => {
         <Upper />
       {/* <hr /> */}
 
-      <div className="First-container1"></div>
+     <Depper />
     </div>
   );
 };
