@@ -52,7 +52,9 @@ app.post('/deletebin', function (req, res) {
 
 server.listen(PORT, () => { console.log(`Server listening on port ${PORT}`) })
 
-
+app.post('/qr',(req,res)=>{
+  
+})
 
 app.get('/blink', (req, res) => {
 
