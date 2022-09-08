@@ -7,7 +7,7 @@ function Message() {
   const socketRef = useRef();
 
   useEffect(() => {
-    socketRef.current = io.connect("http://localhost:8000");
+    socketRef.current = io.connect("http://192.168.43.73:8000");
 
     socketRef.current.on("hex", (message) => {
       setChat([...chat, message]);
