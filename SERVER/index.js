@@ -1,4 +1,6 @@
 const express = require('express')
+const jwt = require('jsonwebtoken')
+
 const cors = require('cors')
 const updateESP = require('./middlewares/mqtt')
 const multer = require('multer');
@@ -53,7 +55,8 @@ app.post('/deletebin', function (req, res) {
 server.listen(PORT, () => { console.log(`Server listening on port ${PORT}`) })
 
 app.post('/qr',(req,res)=>{
-  
+var token = jwt.sign(JSON.parse(req.body), process.env.TOKEN);
+res.send({ token: token })
 })
 
 app.get('/blink', (req, res) => {
