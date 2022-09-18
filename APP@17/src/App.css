@@ -132,6 +132,9 @@ a:hover{
   margin: auto;
   text-align: center;
 }
+.card img{
+ width: 350px;
+}
 
 .title {
   color: grey;
@@ -158,8 +161,10 @@ button:hover, a:hover {
 }
 
 .user-icon{
+  margin-top: 20px ;
+  align-items: center;
+  justify-content: center;
   text-align:center;
-  margin: auto;
   font-size: 23px;
 }
 
