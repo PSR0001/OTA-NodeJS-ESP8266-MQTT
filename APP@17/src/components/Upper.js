@@ -1,27 +1,48 @@
 // import React, { useState, useEffect } from 'react'
-import React from 'react'
+import React,{useState} from 'react'
 import { FaCreativeCommonsNd, FaPowerOff, FaRegLightbulb, FaFan } from "react-icons/fa";
 import { HiLightBulb } from "react-icons/hi";
 
 const Upper = () => {
 
   //button initial state
-  // const [first, setfirst] = useState()
-  // const [second, setsecond] = useState()
-  // const [third, setthird] = useState()
-  // const [fourth, setfourth] = useState()
+  const [first, setfirst] = useState(false)
+  const [second, setsecond] = useState(false)
+  const [third, setthird] = useState(false)
+  const [fourth, setfourth] = useState(false)
 
-  //fetch from esp8266 data;
-
-  // useEffect(() => {
-  //   console.log("Ready...");
-  // }, [])
-
-  // function AC(){
-  //     console.log("Clicked")
-      
+  // function FETCH(data){
+  //   fetch('http://192.168.43.73:8000/handelESP', {
+  //     method: 'POST', // or 'PUT'
+  //     headers: {
+  //       'Content-Type': 'application/json',
+  //     },
+  //     body: JSON.stringify(data),
+  //   })
+  //     .then((response) => response.json())
+  //     .then((data) => {
+  //       console.log('Success:', data);
+  //       alert('Success:'+data)
+  //     })
+  //     .catch((error) => {
+  //       console.error('Error:', error);
+  //     });
   // }
 
+function AirC(){
+  console.log("Air");
+  // FETCH(true)
+  
+}
+function Bedroom(){
+  console.log("Bedroom");
+}
+function Fan(){
+  console.log("Fan");
+}
+function Main(){
+  console.log("main");
+}
 
 
 
@@ -31,7 +52,10 @@ const Upper = () => {
     <div className="First-container1 grid-container ">
 
       {/* ===================ITEM ONE========================== */}
-      <div className="display-flex space-center prevent-select effect ">
+      <div onClick={()=>{
+        setfirst(true)
+        AirC()
+      }} className="display-flex space-center prevent-select effect ">
         <div className="item item1 glass">
           <div className="main-button">
             <div className="power-icon">
@@ -46,7 +70,7 @@ const Upper = () => {
       </div>
 
       {/* ===================ITEM TWO========================== */}
-      <div className="display-flex space-center prevent-select effect">
+      <div onClick={Bedroom} className="display-flex space-center prevent-select effect">
         <div className="item item2 glass">
           <div className="main-button">
             <div className="power-icon">
@@ -61,7 +85,7 @@ const Upper = () => {
       </div>
 
       {/* ===================ITEM THREE========================== */}
-      <div className="display-flex space-center prevent-select effect">
+      <div onClick={Fan} className="display-flex space-center prevent-select effect">
         <div className="item item2 glass">
           <div className="main-button">
             <div className="power-icon">
@@ -76,7 +100,7 @@ const Upper = () => {
       </div>
 
       {/* ===================ITEM FOUR========================== */}
-      <div className="display-flex space-center prevent-select effect">
+      <div onClick={Main} className="display-flex space-center prevent-select effect">
         <div className="item item2 glass">
           <div className="main-button">
             <div className="power-icon">

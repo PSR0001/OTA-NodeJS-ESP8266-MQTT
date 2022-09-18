@@ -22,11 +22,6 @@ const io = new Server(server, {
 });
 
 
-
-
-
-
-
 const PORT = process.env.PORT || 8000
 
 const storage = fileSystem()
@@ -40,12 +35,16 @@ app.set('view-engine', 'ejs')
 app.use('/static', express.static('public'))
 
 //coming post request from client to update the codes
-app.post('/updateesp', updateESP, (req, res) => {
-  res.json({ status: true, message: "success", publish: true })
+app.get('/updateesp', (req, res) => {
+  //upload the file
+  res.sendFile(path.join(__dirname, './Uploads', 'Blink.ino.bin'));
+
 })
 
+//upload the file
 app.put('/upload', upload.single('file'), function (req, res) { res.send({ status: true }); });
 
+//delete the file
 app.post('/deletebin', function (req, res) {
   let status = deleteBin(req, res)
   if (status === true) { res.send({ status: true, message: "Successfully Deleted." }) }
@@ -59,12 +58,8 @@ var token = jwt.sign(JSON.parse(req.body), process.env.TOKEN);
 res.send({ token: token })
 })
 
-app.get('/blink', (req, res) => {
-
-  console.log(req.body);
-  res.sendFile(path.join(__dirname, './Uploads', 'Blink.ino.bin'));
-
-
+app.post('/handelESP',(req,res)=>{
+  res.send({status:true})
 })
 
 
