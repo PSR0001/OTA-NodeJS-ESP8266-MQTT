@@ -1,6 +1,5 @@
 const express = require('express')
 const jwt = require('jsonwebtoken')
-
 const cors = require('cors')
 const updateESP = require('./middlewares/mqtt')
 const multer = require('multer');
@@ -22,7 +21,7 @@ const io = new Server(server, {
 });
 
 
-const PORT = process.env.PORT || 8000
+const PORT = process.env.PORT || 80
 
 const storage = fileSystem()
 let upload = multer({ storage: storage })
@@ -35,7 +34,7 @@ app.set('view-engine', 'ejs')
 app.use('/static', express.static('public'))
 
 //coming post request from client to update the codes
-app.get('/updateesp', (req, res) => {
+app.get('/blink', (req, res) => {
   //upload the file
   res.sendFile(path.join(__dirname, './Uploads', 'Blink.ino.bin'));
 
