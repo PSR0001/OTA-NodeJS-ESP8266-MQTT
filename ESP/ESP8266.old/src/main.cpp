@@ -109,10 +109,6 @@ void loop()
 
 
 
-
-
-
-
 }
 
 void wifi_setup()
